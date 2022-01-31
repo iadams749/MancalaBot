@@ -66,3 +66,11 @@ class Model:
                 self.board[int(not spot_y)][spot_x] = 0
 
         return not p1_turn
+
+    def clearBoard(self):
+        for x in range(0,6):
+            self.p2_score += self.board[0][x]
+            self.board[0][x] = 0
+        for x in range(0,6):
+            self.p1_score += self.board[1][x]
+            self.board[1][x] = 0
