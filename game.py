@@ -31,31 +31,30 @@ class Game:
         self.game_over = True
 
         if self.turn:
-            for x in range(0,6):
+            for x in range(0, 6):
                 if self.model.board[1][x] != 0:
                     self.game_over = False
         elif not self.turn:
-            for x in range(0,6):
+            for x in range(0, 6):
                 if self.model.board[0][x] != 0:
                     self.game_over = False
 
-        #Clearing the marbles if the game is over
+        # Clearing the marbles if the game is over
         if self.game_over:
             self.model.clearBoard()
 
     def printout(self):
         print(self.model.board)
-        print("Player One: "+str(self.model.p1_score))
-        print("Player Two: "+str(self.model.p2_score))
+        print("Player One: " + str(self.model.p1_score))
+        print("Player Two: " + str(self.model.p2_score))
         if self.turn:
             print("Current Turn: Player 1")
         else:
             print("Current Turn: Player 2")
 
     def random_game(self):
-        while(not self.game_over):
+        while not self.game_over:
             moves = self.get_moves()
-            x,y = moves[randint(0,len(moves)-1)]
-            self.do_turn(x,y)
+            x, y = moves[randint(0, len(moves) - 1)]
+            self.do_turn(x, y)
             self.printout()
-
