@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 
 	"github.com/iadams749/MancalaBot/internal/game"
 )
@@ -9,10 +10,14 @@ import (
 func main() {
 	game := game.New()
 
-	err := game.DoMove(2)
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	for !game.Finished {
+		moves := game.ValidMoves()
 
-	game.Print()
+		idx := rand.Intn(len(moves))
+
+		 _ = game.DoMove(moves[idx])
+
+		game.Print()
+		fmt.Println()
+	}
 }
