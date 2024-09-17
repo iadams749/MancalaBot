@@ -20,7 +20,7 @@ func TestNew(t *testing.T) {
 			name: "happy path",
 			want: &Game{
 				Board:    []int{4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 		},
@@ -58,7 +58,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "new game move 1",
 			fields: fields{
 				Board:    []int{4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			args: args{
@@ -66,7 +66,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{0, 5, 5, 5, 5, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			wantErr: nil,
@@ -75,7 +75,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "new game move 2",
 			fields: fields{
 				Board:    []int{0, 5, 5, 5, 5, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			args: args{
@@ -83,7 +83,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{0, 5, 5, 5, 5, 4, 0, 0, 5, 5, 5, 5, 4, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			wantErr: nil,
@@ -92,7 +92,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "p1 turn again",
 			fields: fields{
 				Board:    []int{4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			args: args{
@@ -100,7 +100,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{4, 4, 0, 5, 5, 5, 1, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			wantErr: nil,
@@ -109,7 +109,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "p2 turn again",
 			fields: fields{
 				Board:    []int{0, 5, 5, 5, 5, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			args: args{
@@ -117,7 +117,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{0, 5, 5, 5, 5, 4, 0, 4, 4, 0, 5, 5, 5, 1},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			wantErr: nil,
@@ -126,7 +126,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "p1 around the bend",
 			fields: fields{
 				Board:    []int{4, 4, 4, 4, 4, 8, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			args: args{
@@ -134,7 +134,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{5, 4, 4, 4, 4, 0, 1, 5, 5, 5, 5, 5, 5, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			wantErr: nil,
@@ -143,7 +143,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "p2 around the bend",
 			fields: fields{
 				Board:    []int{4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 8, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			args: args{
@@ -151,7 +151,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{5, 5, 5, 5, 5, 5, 0, 5, 4, 4, 4, 4, 0, 1},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			wantErr: nil,
@@ -160,7 +160,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "p1 pot capture",
 			fields: fields{
 				Board:    []int{4, 4, 4, 4, 0, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			args: args{
@@ -168,7 +168,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{0, 5, 5, 5, 0, 4, 5, 4, 0, 4, 4, 4, 4, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			wantErr: nil,
@@ -177,7 +177,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "p2 pot capture",
 			fields: fields{
 				Board:    []int{4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 0, 4, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			args: args{
@@ -185,7 +185,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{4, 0, 4, 4, 4, 4, 0, 0, 5, 5, 5, 0, 4, 5},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			wantErr: nil,
@@ -194,7 +194,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "p1 pseudo capture",
 			fields: fields{
 				Board:    []int{4, 4, 4, 4, 4, 3, 0, 0, 0, 4, 4, 4, 4, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			args: args{
@@ -202,7 +202,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{4, 4, 4, 4, 4, 0, 1, 1, 1, 4, 4, 4, 4, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			wantErr: nil,
@@ -211,7 +211,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "p2 pseudo capture",
 			fields: fields{
 				Board:    []int{0, 0, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 3, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			args: args{
@@ -219,7 +219,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{1, 1, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 0, 1},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			wantErr: nil,
@@ -228,7 +228,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "finished no pot emptying",
 			fields: fields{
 				Board:    []int{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			args: args{
@@ -236,7 +236,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: true,
 			},
 			wantErr: nil,
@@ -245,7 +245,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "finished p2 pot emptying",
 			fields: fields{
 				Board:    []int{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5, 0, 0, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			args: args{
@@ -253,7 +253,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: true,
 			},
 			wantErr: nil,
@@ -262,7 +262,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "finished p1 pot emptying",
 			fields: fields{
 				Board:    []int{0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			args: args{
@@ -270,7 +270,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: true,
 			},
 			wantErr: nil,
@@ -279,7 +279,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "invalid move empty spot",
 			fields: fields{
 				Board:    []int{1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			args: args{
@@ -287,7 +287,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			wantErr: ErrInvalidMove,
@@ -296,7 +296,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "invalid move p1 wrong spot",
 			fields: fields{
 				Board:    []int{1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			args: args{
@@ -304,7 +304,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			wantErr: ErrInvalidMove,
@@ -313,7 +313,7 @@ func TestGame_DoMove(t *testing.T) {
 			name: "invalid move p2 wrong spot",
 			fields: fields{
 				Board:    []int{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			args: args{
@@ -321,7 +321,7 @@ func TestGame_DoMove(t *testing.T) {
 			},
 			want: &Game{
 				Board:    []int{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			wantErr: ErrInvalidMove,
@@ -366,7 +366,7 @@ func TestGame_ValidMoves(t *testing.T) {
 			name: "new game player 1 turn",
 			fields: fields{
 				Board:    []int{4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			want: []int{0, 1, 2, 3, 4, 5},
@@ -375,10 +375,10 @@ func TestGame_ValidMoves(t *testing.T) {
 			name: "in-progress game player 2 turn",
 			fields: fields{
 				Board:    []int{0, 5, 5, 5, 5, 4, 0, 4, 4, 0, 5, 5, 5, 1},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
-			want: []int{7, 8, 10, 11, 12},
+			want: []int{7, 8, 10, 11, 12,},
 		},
 	}
 	for _, tt := range tests {
@@ -416,7 +416,7 @@ func TestGame_GetScores(t *testing.T) {
 			name: "new game",
 			fields: fields{
 				Board:    []int{4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			want:  0,
@@ -427,7 +427,7 @@ func TestGame_GetScores(t *testing.T) {
 			name: "finished game",
 			fields: fields{
 				Board:    []int{0, 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 0, 0, 24},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: true,
 			},
 			want:  24,
@@ -474,7 +474,7 @@ func TestGame_Print(t *testing.T) {
 			name: "new game p1 turn",
 			fields: fields{
 				Board:    []int{4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerOneTurn,
+				Turn:     PlayerOneTurn,
 				Finished: false,
 			},
 			want: "                   -->               P1  \n-----------------------------------------\n|    | 04 | 04 | 04 | 04 | 04 | 04 |    |\n| 00 |-----------------------------| 00 |\n|    | 04 | 04 | 04 | 04 | 04 | 04 |    |\n-----------------------------------------\n  P2               <--                   \nCurrent turn: P1\n",
@@ -483,7 +483,7 @@ func TestGame_Print(t *testing.T) {
 			name: "turn 2 p2 turn",
 			fields: fields{
 				Board:    []int{0, 5, 5, 5, 5, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-				Turn:     playerTwoTurn,
+				Turn:     PlayerTwoTurn,
 				Finished: false,
 			},
 			want: "                   -->               P1  \n-----------------------------------------\n|    | 00 | 05 | 05 | 05 | 05 | 04 |    |\n| 00 |-----------------------------| 00 |\n|    | 04 | 04 | 04 | 04 | 04 | 04 |    |\n-----------------------------------------\n  P2               <--                   \nCurrent turn: P2\n",

@@ -4,8 +4,8 @@ import "fmt"
 
 // constants for player turns
 const (
-	playerOneTurn = iota
-	playerTwoTurn
+	PlayerOneTurn = iota
+	PlayerTwoTurn
 )
 
 // constants for the spots on the board
@@ -43,7 +43,7 @@ type Game struct {
 func New() *Game {
 	return &Game{
 		Board:    []int{4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0},
-		Turn:     playerOneTurn,
+		Turn:     PlayerOneTurn,
 		Finished: false,
 	}
 }
@@ -64,12 +64,12 @@ func (g *Game) DoMove(spot int) error {
 	for holding > 0 {
 		// checking if the current marker is in the opposite home
 		if marker == p1home {
-			if g.Turn == playerTwoTurn {
+			if g.Turn == PlayerTwoTurn {
 				marker++
 				continue
 			}
 		} else if marker == p2home {
-			if g.Turn == playerOneTurn {
+			if g.Turn == PlayerOneTurn {
 				marker = p1pot1
 				continue
 			}
@@ -102,10 +102,10 @@ func (g *Game) DoMove(spot int) error {
 	// checking whose turn it will be after the move
 	if marker != p1home && marker != p2home {
 		// flipping who's turn it is
-		if g.Turn == playerOneTurn {
-			g.Turn = playerTwoTurn
-		} else if g.Turn == playerTwoTurn {
-			g.Turn = playerOneTurn
+		if g.Turn == PlayerOneTurn {
+			g.Turn = PlayerTwoTurn
+		} else if g.Turn == PlayerTwoTurn {
+			g.Turn = PlayerOneTurn
 		}
 
 		return nil
@@ -120,11 +120,11 @@ func (g *Game) validateMove(spot int) bool {
 		return false
 	}
 	
-	if g.Turn == playerOneTurn {
+	if g.Turn == PlayerOneTurn {
 		if spot < p1pot1 || spot > p1pot6 {
 			return false
 		}
-	} else if g.Turn == playerTwoTurn {
+	} else if g.Turn == PlayerTwoTurn {
 		if spot < p2pot1 || spot > p2pot6 {
 			return false
 		}
@@ -143,7 +143,7 @@ func (g *Game) checkEmptyPot(marker int) {
 		return
 	}
 
-	if g.Turn == playerOneTurn {
+	if g.Turn == PlayerOneTurn {
 		if marker >= p1pot1 && marker <= p1pot6 {
 			g.Board[6] = g.Board[6] + g.Board[marker] + g.Board[12-marker]
 			g.Board[marker] = 0
@@ -151,7 +151,7 @@ func (g *Game) checkEmptyPot(marker int) {
 		} else {
 			return
 		}
-	} else if g.Turn == playerTwoTurn {
+	} else if g.Turn == PlayerTwoTurn {
 		if marker >= p2pot1 && marker <= p2pot6 {
 			g.Board[13] = g.Board[13] + g.Board[marker] + g.Board[12-marker]
 			g.Board[marker] = 0
@@ -209,13 +209,13 @@ func (g *Game) checkGameOver() bool {
 func (g *Game) ValidMoves() []int {
 	var validMoves []int
 
-	if g.Turn == playerOneTurn {
+	if g.Turn == PlayerOneTurn {
 		for i := p1pot1; i <= p1pot6; i++ {
 			if g.Board[i] != 0 {
 				validMoves = append(validMoves, i)
 			}
 		}
-	} else if g.Turn == playerTwoTurn {
+	} else if g.Turn == PlayerTwoTurn {
 		for i := p2pot1; i <= p2pot6; i++ {
 			if g.Board[i] != 0 {
 				validMoves = append(validMoves, i)
@@ -235,7 +235,7 @@ func (g *Game) GetScores() (int, int, bool) {
 func (g *Game) Print() {
 
 	turn := "P1"
-	if g.Turn != playerOneTurn {
+	if g.Turn != PlayerOneTurn {
 		turn = "P2"
 	}
 
